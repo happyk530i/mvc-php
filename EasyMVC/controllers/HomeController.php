@@ -1,4 +1,4 @@
- <?php
+<?php
 //   require_once('../dbConnect.php');
 //   header("Content-Type:text/html; charset=utf-8");
 // require_once('C:/xampp/htdocs/smarty-3.1.35/libs/Smarty.class.php');

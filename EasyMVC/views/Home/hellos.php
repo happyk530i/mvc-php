@@ -52,6 +52,9 @@ $total_records = mysqli_num_rows($result);
 }?>
 
   <input class="btn btn-info" type="submit" value="個人留言查看" id="car"></span>
+
+  
+
 </form>
 
 
@@ -88,14 +91,15 @@ $total_records = mysqli_num_rows($result);
                 <div class="w-100">
                   <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="resume-content">
-                      <h3 class="mb-0">大家的&nbsp;&nbsp;留言</h3>
+                      <h3 ><a class="mb-0" href="/MVC/EasyMVC/Blog/message">大家的留言</a></h3>
                       <div class="subheading mb-3">
                         <div id="controller1" class="row" id="number-area">
 
 
 
-
+                        
 <?php
+
 
 while ($row_result = mysqli_fetch_assoc($result)) {
 
