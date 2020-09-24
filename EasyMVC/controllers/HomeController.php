@@ -73,23 +73,18 @@ class HomeController extends Controller
     {
         session_start();
 
-        // if ($_SERVER['REQUEST_METHOD'] === "GET") {
-
-        //     return $this->view("Home/login"); //***如果過來get請求就自殺***
-
-        //     // echo $_POST["username"];
-
-        // }
-
-
-        if ($_SERVER['REQUEST_METHOD'] === "GET") {
+        if ($_SERVER['REQUEST_METHOD'] === "GET" ) {
 
             return $this->view("Home/register");
+ //***如果過來get請求就自殺自導頁面***  post就向下做
 
-            //***如果過來get請求就自殺自導頁面***  post就向下做
+            // }else{
 
-            // echo $_POST["username"];
+            //     && $_SESSION['UserNameS']=== null
+
+            // header("Location: ../Home/login/");
         }
+
         require_once '../dbConnect.php';
         header("Content-Type:text/html; charset=utf-8");
         $sqls = "select * from ordertest where username= '{$_POST["username"]}'";

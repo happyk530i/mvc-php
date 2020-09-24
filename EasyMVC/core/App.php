@@ -12,7 +12,7 @@ class App {
         $methodName = $url[1];
         unset($url[0]); unset($url[1]);
         $params = $url ? array_values($url) : Array();
-        call_user_func_array(Array($controller, $methodName), $params);
+       echo call_user_func_array(Array($controller, $methodName), $params);
     }
         
  

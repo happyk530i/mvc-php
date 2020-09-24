@@ -26,11 +26,11 @@ $total_records = mysqli_num_rows($result);
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/MVC/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link id="order" rel="stylesheet" type="text/css" href="css/mycss.css">
-  <link href="css/resume.min.css" rel="stylesheet">
-  <link rel="stylesheet"href="/Public/css/bootstrap.min.css">
-  <link rel="stylesheet"href="/Public/img/main.css">
+  <link href="/MVC/public/css/resume.min.css" rel="stylesheet">
+  <link rel="stylesheet"href="/MVC/public//css/bootstrap.min.css">
+  <link rel="stylesheet"href="/MVC/public/img/main.css">
 
 
 
@@ -50,11 +50,6 @@ $total_records = mysqli_num_rows($result);
   <a  id="login1" href="logout.php" >登出</a>
   <span id="login2">歡迎您使用者:<?=$_SESSION['UserNameS']?> <?php
 }?>
-
-  <input class="btn btn-info" type="submit" value="個人留言查看" id="car"></span>
-
-  
-
 </form>
 
 
@@ -70,7 +65,7 @@ $total_records = mysqli_num_rows($result);
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a id="aaaa" class="nav-link js-scroll-trigger" href="ccar.php">自我歷史留言</a>
+          <a id="aaaa" style="color:black; class="nav-link js-scroll-trigger" href="/MVC/EasyMVC/Blog/messagedos">自我歷史留言</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="addmessage.php">我要留言</a>
@@ -95,26 +90,6 @@ $total_records = mysqli_num_rows($result);
                       <div class="subheading mb-3">
                         <div id="controller1" class="row" id="number-area">
 
-
-
-                        
-<?php
-
-
-while ($row_result = mysqli_fetch_assoc($result)) {
-
-    echo "id:&nbsp;&nbsp;" . $row_result['userid'] . "<br>";
-    echo "留言者:&nbsp;&nbsp;" . $row_result['username'] . "<br>";
-    echo "留言內容:<br>" . $row_result['text'] . "<br>";
-    echo "留言時間:&nbsp;&nbsp;" . $row_result['time'] . "<br>";
-
-    echo "<a href='controller/change.php?value=" . $row_result['listid'] . " & userid=" . $row_result['userid'] . "'>修改</a> ";
-
-    echo "&nbsp;&nbsp;<a href='delete.php?id=" . $row_result['cID'] . "'>退回</a></td>";
-
-}
-?>
-
                     </div>
 
                   </div>
@@ -123,31 +98,17 @@ while ($row_result = mysqli_fetch_assoc($result)) {
               </div>
           </section>
         </div>
-
-
-    <hr class="m-0">
-
-
-
-    <hr class="m-0">
-
-
-
-    <hr class="m-0">
-
-
-
-  </div>
+ </div>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/MVC/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/MVC/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/MVC/public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="js/resume.min.js"></script>
+  <script src="/MVC/public/js/resume.min.js"></script>
 
 </body>
 

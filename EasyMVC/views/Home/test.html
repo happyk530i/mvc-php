@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/MVC/public/js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<script>
+
+    $(window).ready(function () {
+
+        $("#abc").click(function () {
+            $.ajax({
+
+                type: "get",
+                url: "/MVC/EasyMVC/Test/get123"
+
+            }).then(function (e) {
+
+                alert(e);
+                $("#www").text(e);
+
+
+            })
+        })
+})
+
+</script>
+
+<body>
+    {{$ars}}
+
+
+    <button type="button" id="abc">fhhj</button>
+    
+    
+    <p id="www"></p>
+
+    
+</body>
+
+</html>
