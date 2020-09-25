@@ -98,12 +98,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ymdTextBox">
+                        <label for="timeTextBox">
                             <span class="glyphicon glyphicon-time"></span>
                             日期
                         </label>
                         <input type="text"
-                               id="ymdTextBox"
+                               id="timeTextBox"
                                class="form-control"
                                placeholder="yyyy-mm-dd 例如: 2017-05-20">
                     </div>
@@ -163,7 +163,7 @@ $(function () {
 
 
             
-    $.get("/MVC/EasyMVC/Test/get123", function (e) {
+    $.get("/MVC1/EasyMVC/Blog/get123", function (e) {
         
         newsList = JSON.parse(e);
         refreshNewsUI();
@@ -175,32 +175,33 @@ $(function () {
 
         $.each(newsList, function (key, obj) {
             var newsText = obj.text + " [" + obj.time + "]";
-            var $li = $("<li></li>")
-                        .text(newsText)
-                        .addClass("list-group-item");
+            var $li = $("<li></li>").text(newsText).addClass("list-group-item");
             $li.append('<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span>');
             $li.appendTo("#latestNews");
         })
-    
+    //修改 先調取資料 尚未發送
         $(".editItem").click(function () {
             // var iIndex = $(this).parent().parent().index();
             var iIndex = $(this).closest("li").index();
             currentIndex = iIndex;
-            $("#titleTextBox").val(newsList[iIndex].title);
-            $("#ymdTextBox").val(newsList[iIndex].ymd);
+            $("#titleTextBox").val(newsList[iIndex].text);
+            $("#timeTextBox").val(newsList[iIndex].time);
             $("#newsModal").modal( { backdrop: "static" } );
         })
-
+    //刪除
         $(".deleteItem").click(function () {
+            
             var iIndex = $(this).closest("li").index();
             $.ajax({
-                type: "delete",
-                url: "/home/news",
-                data: newsList[iIndex]
-            })
-            .then(function (e) {
+                type: "post",
+                url: "/MVC1/EasyMVC/Blog/delete123",
+                data: {e:JSON.stringify(newsList[iIndex])}
                 
-                $.get("/home/news", function (e) {
+            })
+           .then(function (e) {
+            // console.log(123);
+            
+                $.get("/MVC1/EasyMVC/Blog/get123", function (e) {
                     newsList = JSON.parse(e);
                     refreshNewsUI();
                 })
@@ -210,18 +211,18 @@ $(function () {
     }  // refreshNewsUI
 
     var currentIndex = -1;
-    
+//OK按鈕
     $("#okButton").click(function () {
         if (currentIndex >= 0) { // edit
-            newsList[currentIndex].title = $("#titleTextBox").val();
-            newsList[currentIndex].ymd = $("#ymdTextBox").val();
+            newsList[currentIndex].text = $("#titleTextBox").val();
+            newsList[currentIndex].time = $("#timeTextBox").val();
             refreshNewsUI();
             $("#newsModal").modal("hide");
             
             $.ajax({
-                type: "put",
-                url: "/home/news",
-                data: newsList[currentIndex]
+                type: "post",
+                url: "/MVC1/EasyMVC/Blog/put123",
+                data: {e:JSON.stringify(newsList[currentIndex])} 
             })
             .then(function (e) {
                
@@ -229,16 +230,17 @@ $(function () {
         }
         else {  // new
             var newItem = {
-                title: $("#titleTextBox").val(),
-                ymd: $("#ymdTextBox").val()
+                text: $("#titleTextBox").val(),
+                time: $("#timeTextBox").val()
             };
             $.ajax({
                 type: "post",
-                url: "/home/news",
-                data: newItem
+                url: "/MVC1/EasyMVC/Blog/post123",
+                data:  {e:JSON.stringify(newItem)} 
+
             })
             .then(function (e) {
-                $.get("/home/news", function (e) {
+                $.get("/MVC1/EasyMVC/Blog/get123", function (e) {
                     newsList = JSON.parse(e);
                     refreshNewsUI();
                 })
@@ -252,7 +254,7 @@ $(function () {
     $("#newItem").click(function () {
         currentIndex = -1;
         $("#titleTextBox").val("");
-        $("#ymdTextBox").val("");
+        $("#timeTextBox").val("");
         $("#newsModal").modal( { backdrop: "static" } );
     })
 

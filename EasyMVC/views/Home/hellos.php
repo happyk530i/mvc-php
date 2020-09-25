@@ -65,7 +65,7 @@ $total_records = mysqli_num_rows($result);
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a id="aaaa" style="color:black; class="nav-link js-scroll-trigger" href="/MVC/EasyMVC/Blog/messagedos">自我歷史留言</a>
+          <a id="aaaa" style="color:black; class="nav-link js-scroll-trigger" href="/MVC1/EasyMVC/Blog/messagedos">自我的歷史留言</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="addmessage.php">我要留言</a>
